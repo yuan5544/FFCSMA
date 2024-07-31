@@ -93,9 +93,17 @@ class InpaintGenerator(BaseNetwork):
         x2_2 = x2_2.permute(0, 3, 1, 2)
         x2_ = (x2_1, x2_2)
         # print(x2_1.shape, x2_2.shape) # torch.Size([2, 192, 64, 64]) torch.Size([2, 64, 64, 64])
-
         x_ffc = self.FFCResnetBlock(x2_)
         # print(x_ffc.shape) # torch.Size([2, 256, 64, 64])
+
+        x_ffc = x_ffc.permute(0, 2, 3, 1)
+        x2_1 = self.Linear2(x_ffc)
+        x2_2 = self.Linear1(x_ffc)
+        x2_1 = x2_1.permute(0, 3, 1, 2)
+        x2_2 = x2_2.permute(0, 3, 1, 2)
+        x2_ = (x2_1, x2_2)
+        # print(x2_1.shape, x2_2.shape) # torch.Size([2, 192, 64, 64]) torch.Size([2, 64, 64, 64])
+        x_ffc = self.FFCResnetBlock(x2_)
 
         x2 = x2.permute(0, 3, 1, 2)
         fin = x2.clone()
