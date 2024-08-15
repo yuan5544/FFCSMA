@@ -1,4 +1,4 @@
-# Image-Inpainting-Algorithm-Based-on-Fast-Fourier-Convolution-and-Spatial-Mask-Attention
+# Image-Inpainting-Algorithm-Based-on-FFC-and-SMA
 
 The complete code for generator and discriminator networks has been uploaded!
 
